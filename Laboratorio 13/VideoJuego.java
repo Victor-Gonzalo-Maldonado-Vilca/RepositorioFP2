@@ -5,6 +5,7 @@ class VideoJuego {
     Scanner sc = new Scanner(System.in);
     boolean menu = true;
     int opcion;
+    // Menu personalizado, depende del ussuario elegir como quiere empezar el juego
     do {
       System.out.println("\tMenu");
       System.out.println("1. Juego Rapido");
@@ -14,6 +15,10 @@ class VideoJuego {
       opcion = sc.nextInt();
       sc.nextLine();
       switch (opcion) {
+        /*
+         * Juego rapdo donde los datos se elaboran de manera aleatoria
+         * Aqui el usuario simplemente podra jugar en el tablero
+         */
         case 1:
           boolean continuar = true;
           while (continuar) {
@@ -113,6 +118,10 @@ class VideoJuego {
             }
           }
           break;
+        /*
+         * El usuario tendra el poder de generar su ejercito de poder crear sus
+         * propios soldados y ponerle los datos que quiera.
+         */
         case 2:
           int opcion1;
           boolean menu2 = true;
@@ -369,6 +378,11 @@ class VideoJuego {
     } while (menu);
   }
 
+  /*
+   * En este metodo se inicializara los datos aleatorios correspondientes de los
+   * diversos soldados
+   * que se generaran en el ejercito 1.
+   */
   public static void ejercito1(ArrayList<Soldado> ejercito1, byte n1, String[][] tablero) {
     Scanner sc = new Scanner(System.in);// Datos Aleatorios
     int ph, fila, columna;
@@ -396,6 +410,11 @@ class VideoJuego {
     }
   }
 
+  /*
+   * En este metodo se inicializara los datos aleatorios correspondientes de los
+   * diversos soldados
+   * que se generaran en el ejercito 2.
+   */
   public static void ejercito2(ArrayList<Soldado> ejercito2, byte n2, String[][] tablero) {
     Scanner sc = new Scanner(System.in);// Datos Aleatorios
     int ph, fila, columna;
@@ -423,7 +442,11 @@ class VideoJuego {
     }
   }
 
-  // Vida Actual
+  /*
+   * En este metodo se actualizara la vida correspondiente despues de la guerra,
+   * llamando al metodo
+   * vidaActual de la clase Soldado
+   */
   public static void actualizarVida(ArrayList<Soldado> ejercito1, ArrayList<Soldado> ejercito2) {
     int minimo = Math.min(ejercito1.size(), ejercito2.size());
     for (int i = 0; i < minimo; i++) {
@@ -436,6 +459,11 @@ class VideoJuego {
     }
   }
 
+  /*
+   * En este metodo se mostraran de forma de lista todos los soldados
+   * pertenecientes
+   * al ejercito correspondiente.
+   */
   public static void mostrar(ArrayList<Soldado> ejercito) {
     // mostrar soldados
     for (Soldado batallon : ejercito) {
@@ -444,6 +472,10 @@ class VideoJuego {
     }
   }
 
+  /*
+   * En este metodo se inicializara el tablero con guiones de esa forma estariamos
+   * haciendo alusion a un tablero vacío
+   */
   public static void tablero(String[][] tablero) {
     // inicializar tablero
     for (int i = 0; i < Soldado.SOLDADOS; i++) {
@@ -454,6 +486,11 @@ class VideoJuego {
     }
   }
 
+  /*
+   * En este metodo se mostrara el tablero con los datos o caracteres ya
+   * colocados, recordemos que los caracteres representan a un soldado en el
+   * tablero
+   */
   public static void mostrarT(String[][] tablero) {
     // imprimir tablero
     System.out.println("   A  B  C  D  E  F  G  H  I  J");
@@ -474,6 +511,10 @@ class VideoJuego {
     }
   }
 
+  /*
+   * En este metodo se busca al soldado con mayor puntos de vida correspondiente
+   * al ejercito colocado como parametro, retornando este mismo
+   */
   public static Soldado mayorSoldado(ArrayList<Soldado> ejercito) {
     // busca soldado con mayor vida
     Soldado auxiliar = ejercito.get(0);
@@ -486,6 +527,11 @@ class VideoJuego {
     return auxiliar;
   }
 
+  /*
+   * En este metodo se logra obtener mediante un algoritmo básico el promedio
+   * correspondiente de la vida de todos los soldados del ejercito correspondiente
+   * enviado como parametro
+   */
   public static double promedioSoldado(ArrayList<Soldado> ejercito) {
     // opera promedio de punto de vida de cada soldado
     int suma = 0;
@@ -498,6 +544,13 @@ class VideoJuego {
     return promedio;
   }
 
+  /*
+   * Ordenamiento decreciente dependiendo de la vida de cada soldado, el
+   * ordenamiento burbuja consta de recorrer repetidamente una lista de elementos.
+   * En cada iteración, compara los elementos adyacentes y los intercambia si
+   * están en el orden incorrecto. Este proceso se repite hasta que no se
+   * necesiten más intercambios, lo que indica que la lista está ordenada
+   */
   public static void ordenPorBurbuja(ArrayList<Soldado> ejercito) {
     int n = ejercito.size();
     for (int i = 0; i < n - 1; i++) {
@@ -512,6 +565,12 @@ class VideoJuego {
     }
   }
 
+  /*
+   * Ordenamiento decreciente dependiendo de la vida de cada soldado, este
+   * algoritmo consta en encontrar el menor de todos los elementos del vector e
+   * intercambiarlo con el que está en la primera posición. Luego el segundo mas
+   * pequeño, y así sucesivamente hasta ordenarlo todo.
+   */
   public static void ordenarPorSeleccion(ArrayList<Soldado> ejercito) {
     for (int i = 0; i < ejercito.size() - 1; i++) {
       int c = i;
@@ -530,6 +589,11 @@ class VideoJuego {
     }
   }
 
+  /*
+   * En este metodo se recorrera el arrayList de soldados donde sumaremos la vida
+   * de cada soldado para encontrar la suma total de la vida del ejercito
+   * correspondiente enviado como parametro
+   */
   public static int sumaVida(ArrayList<Soldado> ejercito) {
     // suma de los puntos de vida de cada soldado
     int suma = 0;
@@ -541,6 +605,11 @@ class VideoJuego {
     return suma;
   }
 
+  /*
+   * En este metodo se realizara el juego, donde se verifica que las coordenadas
+   * sean validas y sobre todo donde se realizara la metrica usada para la
+   * elección del ganador
+   */
   public static void juego(String[][] tablero, ArrayList<Soldado> ejercito1, ArrayList<Soldado> ejercito2) {
     Scanner sc = new Scanner(System.in);
     String coords;
@@ -680,6 +749,10 @@ class VideoJuego {
     mostrarT(tablero);
   }
 
+  /*
+   * En este metodo se convertira las columnas ingresadas como letras anumeros,
+   * para que se pueda trabajar con los indices del arreglo
+   */
   public static int convertM(String n) {
     switch (n) {
       case "A":
@@ -706,6 +779,10 @@ class VideoJuego {
     return 10;
   }
 
+  /*
+   * En este metodo se crear de manera aleatoria los soldados de uno en uno,
+   * además se verifica si el ejercito esta lleno
+   */
   public static void crearSoldado(ArrayList<Soldado> ejercito, String[][] tablero) {
     if (ejercito.size() < Soldado.SOLDADOS) {
       int acti = (int) (Math.random() * 4);
@@ -729,10 +806,15 @@ class VideoJuego {
       tablero[fila][columna] = "*";
       ejercito.add(auxiliar);
     } else {
-      System.out.println("El ejercito 1 esta completo");
+      System.out.println("El ejercito esta completo");
     }
   }
 
+  /*
+   * En este metodo se eliminara al soldado seleccionado mediante el indice que
+   * ocupa en el arraylist, además se verifica si el indice es correcto o si el
+   * arrayList esta vacío
+   */
   public static void eliminarSoldado(ArrayList<Soldado> ejercito) {
     Scanner sc = new Scanner(System.in);
     if (ejercito.size() == 0) {
@@ -748,6 +830,11 @@ class VideoJuego {
     }
   }
 
+  /*
+   * En este metodo se pedira el indice del soldado que se quiere clonar o copiar
+   * al seleccionarlo, mediante el metodo copySoldado, donde se realizara el
+   * copiar cada dato al nuevo
+   */
   public static void clonarSoldado(ArrayList<Soldado> ejercito) {
     Scanner sc = new Scanner(System.in);
     if (ejercito.size() < Soldado.SOLDADOS) {
@@ -765,6 +852,11 @@ class VideoJuego {
     }
   }
 
+  /*
+   * En este metodo se modificara un soldado en los atributo Nivel de Atauqe, de
+   * defensa y puntos de vida, mediante un menu se pedira que atributo se
+   * cambiara, ademas para seleccionar el soldado se usara el indice
+   */
   public static void modificarSoldado(ArrayList<Soldado> ejercito) {
     Scanner sc = new Scanner(System.in);
     System.out.print("Ingrese indice del soldado que se quiere modificar: ");
@@ -811,6 +903,11 @@ class VideoJuego {
     } while (submenu);
   }
 
+  /*
+   * En este metodo se seleccionaran dos soldados, ya sean del mismo ejercito o de
+   * distinto ejercito, donde mediante el metodo equals sobreescrito en la clase
+   * soldado se comparara los soldados
+   */
   public static boolean comparar(ArrayList<Soldado> ejercito1, ArrayList<Soldado> ejercito2) {
     Scanner sc = new Scanner(System.in);
     System.out.println("Escoja los 2 soldados a comparar");
@@ -840,6 +937,11 @@ class VideoJuego {
     return auxiliar.equals(auxiliar1);
   }
 
+  /*
+   * En este metodo se retornara un soldado colocado mediante el indice, este
+   * metodo es de mucha ayuda para rehusar codigo , servira en metodos como
+   * comparar
+   */
   public static Soldado returnSoldado(ArrayList<Soldado> ejercito) {
     Scanner sc = new Scanner(System.in);
     System.out.print("Ingrese indice del Soldado: ");
@@ -852,6 +954,10 @@ class VideoJuego {
     return auxiliar;
   }
 
+  /*
+   * En este metodo se escojeran dos soldados de
+   * distinto ejercito, donde estos se itercambiaran
+   */
   public static void intercambiarSoldado(ArrayList<Soldado> ejercito1, ArrayList<Soldado> ejercito2) {
     Scanner sc = new Scanner(System.in);
     System.out.println("Escoja los 2 soldados a intercambiar");
@@ -873,6 +979,10 @@ class VideoJuego {
     ejercito2.set(number1, auxiliar);
   }
 
+  /*
+   * En este metodo se escojeran dos soldados del
+   * mismo ejercito, donde estos se itercambiaran
+   */
   public static void intercambiarEnElMismoEjercito(ArrayList<Soldado> ejercito) {
     Scanner sc = new Scanner(System.in);
     System.out.println("Escoja los 2 soldados a intercambiar");
@@ -894,6 +1004,10 @@ class VideoJuego {
     ejercito.set(number1, auxiliar);
   }
 
+  /*
+   * En este metodo se buscar el soldado mediante el nombre, al encontrarlo
+   * retornara el soldado correspondiente
+   */
   public static Soldado buscarSoldado(String nombre, ArrayList<Soldado> ejercito) {
     for (Soldado ejer : ejercito) {
       if (nombre.equals(ejer.getNombre())) {
@@ -903,6 +1017,10 @@ class VideoJuego {
     return null;
   }
 
+  /*
+   * Este metodo usara el anterior metodo para imprimir mensajes segun sea el
+   * resultado otorgado en el anterior metodo
+   */
   public static void encontrarSoldado(ArrayList<Soldado> ejercito) {
     Scanner sc = new Scanner(System.in);
     System.out.print("Ingrese Nombre de Soldado: ");
@@ -916,6 +1034,10 @@ class VideoJuego {
     }
   }
 
+  /*
+   * En este metodo se sumaran los atributos correspondientes usando el metodo en
+   * la clase soldado
+   */
   public static Soldado suma(ArrayList<Soldado> ejercito) {
     if (ejercito.isEmpty()) {
       return null;
