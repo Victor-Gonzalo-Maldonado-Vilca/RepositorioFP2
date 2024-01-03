@@ -82,6 +82,10 @@ class VideoJuego {
     }
   }
 
+  /*
+   * Inicializacion del tablero, mostrando un campo sin ningun caracter que
+   * identifique a los soldados
+   */
   public static void tablero(String[][] tablero) {
     // inicializar tablero
     for (int i = 0; i < Soldado.SOLDADOS; i++) {
@@ -91,6 +95,10 @@ class VideoJuego {
     }
   }
 
+  /*
+   * Creación de soldados con datos aleatorios, de esa manera se generan los dos
+   * ejercitos correspondientes
+   */
   public static void crearSoldados(String[][] tablero, ArrayList<Soldado> ejercito, int n, String f, String X) {
     Scanner sc = new Scanner(System.in);// Datos Aleatorios
     int ph, fila, columna;
@@ -118,6 +126,10 @@ class VideoJuego {
     }
   }
 
+  /*
+   * Este metodo muestra la tabla donde se podra observar a los soldados de los
+   * distintos ejercitos con un caracter representativo
+   */
   public static void mostrarT(String[][] tablero) {
     // imprimir tablero
     System.out.println("   A  B  C  D  E  F  G  H  I  J");
@@ -138,6 +150,10 @@ class VideoJuego {
     }
   }
 
+  /*
+   * Este metodo mostrara un los Soldados de el ejercito enviado como parametro,
+   * utilizacion de un for each para recorrer el ArrayList
+   */
   public static void mostrar(ArrayList<Soldado> ejercito) {
     // mostrar soldados
     for (Soldado batallon : ejercito) {
@@ -146,6 +162,10 @@ class VideoJuego {
     }
   }
 
+  /*
+   * Este metodo guiado de un random ya establecido, seleccionar el caracter
+   * representativo de cada ejercito
+   */
   public static String reinoFigura(int random) {
     switch (random) {
       case 1:
@@ -162,6 +182,10 @@ class VideoJuego {
     return " ";
   }
 
+  /*
+   * Al igual que el anterior metodo este se guiara del mismo random donde se
+   * seleccionara dicho ejercito
+   */
   public static String reinoNombre(int random) {
     switch (random) {
       case 1:
@@ -178,6 +202,10 @@ class VideoJuego {
     return "";
   }
 
+  /*
+   * Metodo donde se realizara el juego, donde se verificara si
+   * son validos las coordenadas
+   */
   public static void juego(String[][] tablero, ArrayList<Soldado> ejercito1, ArrayList<Soldado> ejercito2, String f1,
       String f2) {
     Scanner sc = new Scanner(System.in);
@@ -202,6 +230,10 @@ class VideoJuego {
     mostrarT(tablero);
   }
 
+  /*
+   * Metodo que convertira String en numeros para poder trabajar con los indices
+   * del tablero
+   */
   public static int convertM(String n) {
     switch (n) {
       case "A":
@@ -228,6 +260,10 @@ class VideoJuego {
     return 10;
   }
 
+  /*
+   * Complementación de el metodo juego, donde se realizaran los movimientos y se
+   * dara lugar a un ganador
+   */
   public static void verificacion(String[][] tablero, int columna, int fila, ArrayList<Soldado> ejercito1,
       ArrayList<Soldado> ejercito2, String f1, String f2) {
     Scanner sc = new Scanner(System.in);
@@ -291,6 +327,10 @@ class VideoJuego {
     }
   }
 
+  /*
+   * En este metodo se sumara los puntos de vida de los soldados determinados del
+   * ejercito enviado como parametro
+   */
   public static int sumaVida(ArrayList<Soldado> ejercito) {
     // suma de los puntos de vida de cada soldado
     int suma = 0;

@@ -37,6 +37,7 @@ public class Soldado {
     contadorSoldados++;
   }
 
+  // Metodos Set
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
@@ -103,6 +104,7 @@ public class Soldado {
     this.puntosDeVida = puntosDeVida;
   }
 
+  // Metodos Get
   public String getNombre() {
     return nombre;
   }
@@ -135,7 +137,10 @@ public class Soldado {
     return actitud;
   }
 
-  // Actualizacion de vida
+  /*
+   * Actualizacion de vida utilizando nivel de defensa y de ataque donde estos se
+   * restaran
+   */
   public void vidaActual(Soldado c) {
     int a = c.getNivelAtaque();
     int resta = nivelDefensa - a;
@@ -155,6 +160,10 @@ public class Soldado {
     return "Vivo";
   }
 
+  /*
+   * Conversion de numeros a letras para mostrar los datos del soldado de axuerdo
+   * a la tabla
+   */
   public char convertirC(int columna) {
     switch (columna) {
       case 0:
@@ -181,6 +190,10 @@ public class Soldado {
     return 'L';
   }
 
+  /*
+   * Metodo donde se lograra hacer el movimiento jugando con los indices del
+   * tablero sumando y restando filas y columnas
+   */
   public void movimiento(int mov) {
     switch (mov) {
       case 1:
@@ -214,6 +227,10 @@ public class Soldado {
     }
   }
 
+  /*
+   * Metodo donde se vera que soldado es el ganador en una batalla, se utilizara
+   * porcentajes y mediante un numero random se determinara
+   */
   public boolean serAtacado(Soldado n) {
     int nph = n.getPuntosDeVida();
     int suma = this.puntosDeVida + nph;
@@ -226,14 +243,22 @@ public class Soldado {
     return false;
   }
 
+  // Retorna lo soldado generados
   public static int getContadorSoldado() {
     return contadorSoldados;
   }
 
+  /*
+   * Retorna el tamaño del arrayList simulando el conteo de los soldados por
+   * ejercito
+   */
   public static int soldadoEjercito(ArrayList<Soldado> ejercito) {
     return ejercito.size();
   }
 
+  /*
+   * En este metodo se imprimira todos los datos, return un string con ello
+   */
   public String toString() {
     return nombre + " " + puntosDeVida + " " + convertirC(columna) + (fila + 1) + " Actitud: "
         + convertirA() + " / Velocidad: " + velocidad + " / Estado: " + vive() + " / NA-ND: "
